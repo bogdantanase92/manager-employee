@@ -1,6 +1,7 @@
 package com.tanaseb.manageremployee.application.service;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,6 +13,7 @@ import com.tanaseb.manageremployee.api.model.UpdateRequest;
 import com.tanaseb.manageremployee.api.model.UpdateResponse;
 import com.tanaseb.manageremployee.domain.model.Events;
 import com.tanaseb.manageremployee.domain.model.States;
+import com.tanaseb.manageremployee.domain.repository.EmployeeRepository;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = {ManagerEmployeeApplication.class})
 class EmployeeServiceTest {
@@ -23,6 +25,13 @@ class EmployeeServiceTest {
 
 	@Autowired
 	private EmployeeService employeeService;
+	@Autowired
+	private EmployeeRepository employeeRepository;
+
+	@BeforeEach
+	public void setUp() {
+		employeeRepository.deleteAll();
+	}
 
 	@Test
 	void initiateState() {
